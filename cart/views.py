@@ -32,11 +32,14 @@ def cart_remove(request, product_id):
     return redirect('cart:cart_detail')
 
 
-@require_POST
 def cart_detail(request):
     cart = Cart(request)
+    for item in cart:
+        item['update_quantity_form'] = CartAddProductForm(initial={
+            'quantity': item['quantity'], 'override': True
+            })
     context = {
         'cart': cart
     }
 
-    return render(request, 'cart/detil.html', context=context)
+    return render(request, 'cart/detail.html', context=context)
