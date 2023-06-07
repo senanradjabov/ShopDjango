@@ -14,7 +14,7 @@ def product_list(request, category_slug=None):
 
     context = {
         'category': category,
-        'categories': categories, 
+        'categories': categories,
         'products': products
     }
 
